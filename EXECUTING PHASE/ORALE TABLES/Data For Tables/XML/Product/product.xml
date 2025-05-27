@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <row>
+    <_drop_table_product>DROP TABLE PRODUCT cascade constraints;</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>--create table product</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>CREATE TABLE PRODUCT(</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>product_id INTEGER not null</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>product_name VARCHAR2(100)</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>product_description VARCHAR2(500)</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>product_price INTEGER</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>product_quantity INTEGER</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>stock_available VARCHAR2(100)</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>is_disabled NUMBER</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>max_order INTEGER</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>allergy_information VARCHAR2(300)</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>product_picture VARCHAR2(255)</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>product_added_date DATE</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>product_update_date DATE</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>category_id INTEGER not null</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>user_id INTEGER</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>ADMIN_VERIFIED NUMBER</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>);</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>--add primary key constraint product_id in product table</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>ALTER TABLE PRODUCT</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>ADD CONSTRAINT PK_PRODUCT_ID PRIMARY KEY (product_id);</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>--add foreign key constraint category_id in product table</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>ALTER TABLE PRODUCT</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>ADD CONSTRAINT FK_CATEGORY_ID FOREIGN KEY (category_id) REFERENCES PRODUCT_CATEGORY(category_id)</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>ON DELETE CASCADE;</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>--add foreign key constraint user_id in product table</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>ALTER TABLE PRODUCT</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>ADD CONSTRAINT FK_USER_ID FOREIGN KEY (user_id) REFERENCES Cleck_User(user_id)</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>ON DELETE CASCADE;</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>--create sequence for primary key</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>DROP SEQUENCE SEQ_PRODUCT;</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>CREATE SEQUENCE SEQ_PRODUCT START WITH 600</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>INCREMENT BY 1</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>NOCACHE</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>NOCYCLE;</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>--create trigger</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>COMMIT;</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>CREATE OR REPLACE TRIGGER product_trg</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>BEFORE INSERT ON PRODUCT</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>FOR EACH ROW</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>BEGIN</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>IF :NEW.product_id IS NULL THEN</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>SELECT seq_product.NEXTVAL INTO :NEW.product_id FROM SYS.DUAL;</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>END IF;</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>END;</_drop_table_product>
+  </row>
+  <row>
+    <_drop_table_product>/</_drop_table_product>
+  </row>
+</root>

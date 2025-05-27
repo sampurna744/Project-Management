@@ -1,0 +1,40 @@
+--drop table payment
+DROP TABLE PAYMENT cascade constraints;
+--create table payment
+CREATE TABLE PAYMENT(
+    payment_id INTEGER not null,
+    payment_date DATE,
+    payment_type VARCHAR2(100),
+    payment_amount INTEGER,
+    customer_id INTEGER not null,
+    order_product_id INTEGER not null
+);
+--add primary key constraint payment_id in payment table
+ALTER TABLE PAYMENT 
+ADD CONSTRAINT PK_PAYMENT_ID PRIMARY KEY (payment_id);
+--add foreign key constraint customer_id in payment table
+ALTER TABLE PAYMENT 
+ADD CONSTRAINT FK_PAYMENT_CUSTOMER_ID FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id)
+ON DELETE CASCADE;
+--add foreign key constraint order_product_id in payment table
+ALTER TABLE PAYMENT 
+ADD CONSTRAINT FK_PAYMENT_ORDER_PRODUCT_ID FOREIGN KEY (order_product_id) REFERENCES ORDER_PRODUCT(order_product_id)
+ON DELETE CASCADE;
+
+--create sequence for primary key 
+DROP SEQUENCE SEQ_PAYMENT;
+CREATE SEQUENCE SEQ_PAYMENT START WITH 1300
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+--create trigger
+COMMIT;
+CREATE OR REPLACE TRIGGER payment_trg
+BEFORE INSERT ON PAYMENT
+FOR EACH ROW
+BEGIN 
+  IF :NEW.payment_id IS NULL THEN 
+  SELECT seq_payment.NEXTVAL INTO :NEW.payment_id FROM SYS.DUAL;
+  END IF;
+END;
+/

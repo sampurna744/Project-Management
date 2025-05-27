@@ -1,0 +1,44 @@
+--drop table order_product
+DROP TABLE ORDER_PRODUCT cascade constraints;
+--create table ordera_product
+CREATE TABLE ORDER_PRODUCT(
+   	order_product_id INTEGER NOT NULL, 
+	no_of_product NUMBER, 
+	order_status NUMBER, 
+	total_price NUMBER, 
+	slot_id INTEGER not null,
+    cart_id INTEGER not null,
+	order_date DATE, 
+	order_time TIMESTAMP(6), 
+	discount_amount NUMBER, 
+	customer_id NUMBER
+);
+--add primary key constraint order_product_id in order_product table
+ALTER TABLE ORDER_PRODUCT
+ADD CONSTRAINT PK_ORDER_PRODUCT_ID PRIMARY KEY (order_product_id);
+--add foreign key constraint slot_id in order_product table
+ALTER TABLE ORDER_PRODUCT 
+ADD CONSTRAINT FK_SLOT_ID FOREIGN KEY (slot_id) REFERENCES COLLECTION_SLOT(slot_id)
+ON DELETE CASCADE;
+--add foreign key constraint cart_id in order_product table
+ALTER TABLE ORDER_PRODUCT 
+ADD CONSTRAINT FK_CART_ID FOREIGN KEY (cart_id) REFERENCES CART(cart_id)
+ON DELETE CASCADE;
+
+--create sequence for primary key 
+DROP SEQUENCE SEQ_ORDER;
+CREATE SEQUENCE SEQ_ORDER START WITH 1400
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+--create trigger
+COMMIT;
+CREATE OR REPLACE TRIGGER order_trg
+BEFORE INSERT ON ORDER_PRODUCT
+FOR EACH ROW
+BEGIN 
+  IF :NEW.order_product_id IS NULL THEN 
+  SELECT seq_order.NEXTVAL INTO :NEW.order_product_id FROM SYS.DUAL;
+  END IF;
+END;
+/

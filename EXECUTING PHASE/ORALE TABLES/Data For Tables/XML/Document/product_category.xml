@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <row>
+    <_drop_table_product_category>DROP TABLE PRODUCT_CATEGORY cascade constraints;</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>--create table product_category</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>CREATE TABLE PRODUCT_CATEGORY(</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>category_id INTEGER not null</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>category_type VARCHAR2(100)</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>);</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>--add primary key constraint category_id in product_category table</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>ALTER TABLE PRODUCT_CATEGORY</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>ADD CONSTRAINT PK_CATEGORY_ID PRIMARY KEY (category_id);</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>--add column in product_category</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>ALTER TABLE PRODUCT_CATEGORY</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>ADD category_image VARCHAR2(255);</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>--create sequence for primary key</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>DROP SEQUENCE SEQ_CATEGORY;</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>CREATE SEQUENCE SEQ_CATEGORY START WITH 1100</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>INCREMENT BY 1</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>NOCACHE</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>NOCYCLE;</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>--create trigger</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>COMMIT;</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>CREATE OR REPLACE TRIGGER category_trg</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>BEFORE INSERT ON PRODUCT_CATEGORY</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>FOR EACH ROW</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>BEGIN</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>IF :NEW.category_id IS NULL THEN</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>SELECT seq_category.NEXTVAL INTO :NEW.category_id FROM SYS.DUAL;</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>END IF;</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>END;</_drop_table_product_category>
+  </row>
+  <row>
+    <_drop_table_product_category>/</_drop_table_product_category>
+  </row>
+</root>

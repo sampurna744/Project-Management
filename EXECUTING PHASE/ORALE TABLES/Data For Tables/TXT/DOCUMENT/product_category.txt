@@ -1,0 +1,32 @@
+--drop table product_category
+DROP TABLE PRODUCT_CATEGORY cascade constraints;
+--create table product_category
+CREATE TABLE PRODUCT_CATEGORY(
+    category_id INTEGER not null,
+    category_type VARCHAR2(100)
+);
+--add primary key constraint category_id in product_category table
+ALTER TABLE PRODUCT_CATEGORY
+ADD CONSTRAINT PK_CATEGORY_ID PRIMARY KEY (category_id);
+
+--add column in product_category
+ALTER TABLE PRODUCT_CATEGORY
+ADD category_image VARCHAR2(255);
+
+--create sequence for primary key 
+DROP SEQUENCE SEQ_CATEGORY;
+CREATE SEQUENCE SEQ_CATEGORY START WITH 1100
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+--create trigger
+COMMIT;
+CREATE OR REPLACE TRIGGER category_trg
+BEFORE INSERT ON PRODUCT_CATEGORY
+FOR EACH ROW
+BEGIN 
+  IF :NEW.category_id IS NULL THEN 
+  SELECT seq_category.NEXTVAL INTO :NEW.category_id FROM SYS.DUAL;
+  END IF;
+END;
+/

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <row>
+    <_drop_table_shop>DROP TABLE SHOP cascade constraints;</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>--create table shop</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>CREATE TABLE SHOP(</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>shop_id INTEGER not null</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>shop_name VARCHAR2(100)</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>shop_description VARCHAR2(500)</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>user_id INTEGER</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>verified_shop NUMBER(1)</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>shop_profile varchar2(255)</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>shop_category_id NUMBER</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>registration_no NUMBER</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>);</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>--add foreign key constraint user_id in shop table</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>ALTER TABLE SHOP</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>ADD CONSTRAINT FK_SHOP_USER_ID FOREIGN KEY (user_id) REFERENCES Cleck_User(user_id)</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>ON DELETE CASCADE;</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>--add primary key constraint shop_id in shop table</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>ALTER TABLE SHOP</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>ADD CONSTRAINT PK_SHOP_ID PRIMARY KEY (shop_id);</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>--create sequence for primary key</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>DROP SEQUENCE SEQ_SHOP;</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>CREATE SEQUENCE SEQ_SHOP START WITH 500</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>INCREMENT BY 1</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>NOCACHE</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>NOCYCLE;</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>--create trigger</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>COMMIT;</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>CREATE OR REPLACE TRIGGER shop_trg</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>BEFORE INSERT ON SHOP</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>FOR EACH ROW</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>BEGIN</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>IF :NEW.shop_id IS NULL THEN</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>SELECT seq_shop.NEXTVAL INTO :NEW.shop_id FROM SYS.DUAL;</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>END IF;</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>END;</_drop_table_shop>
+  </row>
+  <row>
+    <_drop_table_shop>/</_drop_table_shop>
+  </row>
+</root>

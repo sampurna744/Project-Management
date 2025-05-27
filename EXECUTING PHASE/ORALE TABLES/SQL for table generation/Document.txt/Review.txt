@@ -1,0 +1,13 @@
+
+
+Insert into REVIEW (REVIEW_ID,REVIEW_DATE,REVIEW_SCORE,FEEDBACK,PRODUCT_ID,USER_ID,REVIEW_PROCIDED,ORDER_ID,CUSTOMER_ID) values (803,to_date('26-MAY-24','DD-MON-RR'),5,'The lemons were incredibly fresh and zesty, adding the perfect tangy flavor to my dishes!',623,7,1,1401,300);
+Insert into REVIEW (REVIEW_ID,REVIEW_DATE,REVIEW_SCORE,FEEDBACK,PRODUCT_ID,USER_ID,REVIEW_PROCIDED,ORDER_ID,CUSTOMER_ID) values (804,to_date('26-MAY-24','DD-MON-RR'),5,'The watermelon was exceptionally juicy and sweet, making it a refreshing and delicious treat!',622,7,1,1401,300);
+Insert into REVIEW (REVIEW_ID,REVIEW_DATE,REVIEW_SCORE,FEEDBACK,PRODUCT_ID,USER_ID,REVIEW_PROCIDED,ORDER_ID,CUSTOMER_ID) values (800,to_date('26-MAY-24','DD-MON-RR'),5,'The trifle was a delightful treat! The layers of moist sponge cake, creamy custard, and fresh fruit were perfectly balanced. A delicious, indulgent dessert!',604,7,1,1400,300);
+Insert into REVIEW (REVIEW_ID,REVIEW_DATE,REVIEW_SCORE,FEEDBACK,PRODUCT_ID,USER_ID,REVIEW_PROCIDED,ORDER_ID,CUSTOMER_ID) values (801,to_date('26-MAY-24','DD-MON-RR'),5,'The apple strudel was divine! The pastry was perfectly flaky, and the spiced apple filling was deliciously sweet and warm. A wonderful treat for any time of day!',601,7,1,1400,300);
+Insert into REVIEW (REVIEW_ID,REVIEW_DATE,REVIEW_SCORE,FEEDBACK,PRODUCT_ID,USER_ID,REVIEW_PROCIDED,ORDER_ID,CUSTOMER_ID) values (802,to_date('26-MAY-24','DD-MON-RR'),5,'The lemon bars were absolutely delicious! The perfect balance of tart and sweet, with a buttery crust and zesty lemon filling. A refreshing and delightful treat!',602,7,1,1400,300);
+Insert into REVIEW (REVIEW_ID,REVIEW_DATE,REVIEW_SCORE,FEEDBACK,PRODUCT_ID,USER_ID,REVIEW_PROCIDED,ORDER_ID,CUSTOMER_ID) values (805,to_date('26-MAY-24','DD-MON-RR'),5,'The shrimp were fresh and succulent, with a sweet flavor that was perfect for grilling and sauting!',614,7,1,1402,300);
+Insert into REVIEW (REVIEW_ID,REVIEW_DATE,REVIEW_SCORE,FEEDBACK,PRODUCT_ID,USER_ID,REVIEW_PROCIDED,ORDER_ID,CUSTOMER_ID) values (806,to_date('26-MAY-24','DD-MON-RR'),4,'The sea prawns were firm and flavorful, adding a delicious touch to our seafood dishes!',613,7,1,1402,300);
+Insert into REVIEW (REVIEW_ID,REVIEW_DATE,REVIEW_SCORE,FEEDBACK,PRODUCT_ID,USER_ID,REVIEW_PROCIDED,ORDER_ID,CUSTOMER_ID) values (807,to_date('26-MAY-24','DD-MON-RR'),3,'The mozzarella was fresh and creamy, perfect for salads and pizzas. A delightful, milky flavor!',618,7,1,1403,300);
+
+
+

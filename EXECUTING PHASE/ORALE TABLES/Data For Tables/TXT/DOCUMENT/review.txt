@@ -1,0 +1,39 @@
+--drop table review
+DROP TABLE REVIEW cascade constraints;
+--create table review
+CREATE TABLE REVIEW(
+    review_id INTEGER not null,
+    review_date DATE,
+    review_score INTEGER,
+    feedback VARCHAR2(500),
+    product_id INTEGER not null,
+    user_id INTEGER
+);
+--add primary key constraint review_id in review table
+ALTER TABLE REVIEW
+ADD CONSTRAINT PK_REVIEW_ID PRIMARY KEY (review_id);
+--add foreign key constraint user_id in review table
+ALTER TABLE REVIEW
+ADD CONSTRAINT FK_REVIEW_USER_ID FOREIGN KEY (user_id) REFERENCES Cleck_User(user_id)
+ON DELETE CASCADE;
+--add foreign key constraint product_id in review table
+ALTER TABLE REVIEW 
+ADD CONSTRAINT FK_REVIEW_PRODUCT_ID FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
+ON DELETE CASCADE;
+--add column review_provided in review table
+ALTER TABLE REVIEW
+ADD REVIEW_PROCIDED NUMBER;
+--add column order_id in review table
+ALTER TABLE REVIEW
+ADD order_id NUMBER NOT NULL;
+--add column customer_id in review table
+ALTER TABLE REVIEW
+ADD customer_id NUMBER NOT NULL;
+--add foreign key constraint order_product_id in review table
+ALTER TABLE REVIEW 
+ADD CONSTRAINT FK_REVIEW_ORDER_ID FOREIGN KEY (order_id) REFERENCES ORDER_PRODUCT(order_product_id)
+ON DELETE CASCADE;
+--add foreign key constraint customer_id in review table
+ALTER TABLE REVIEW
+ADD CONSTRAINT FK_REVIEW_CUSTOMER_ID FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id)
+ON DELETE CASCADE;

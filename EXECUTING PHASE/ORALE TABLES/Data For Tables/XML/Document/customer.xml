@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <row>
+    <_drop_table_customer>DROP TABLE CUSTOMER cascade constraints;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--create table customer</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>CREATE TABLE CUSTOMER(</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>customer_id INTEGER not null</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>customer_date_joined DATE</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>verification_code INTEGER</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>date_updated DATE</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>verified_customer NUMBER(1)</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>user_id INTEGER</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>profile_picture VARCHAR2(255)</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>);</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--add foreign key constraint user_id in customer table</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ALTER TABLE CUSTOMER</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ADD CONSTRAINT FK_CUSTOMER_ID FOREIGN KEY (user_id) REFERENCES Cleck_User(user_id)</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ON DELETE CASCADE;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--add primary key constraint customer_id in customer table</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ALTER TABLE CUSTOMER</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ADD CONSTRAINT PK_CUSTOMER_ID PRIMARY KEY (customer_id);</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--create sequence for primary key</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>DROP SEQUENCE SEQ_CUSTOMER;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>CREATE SEQUENCE SEQ_CUSTOMER</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>START WITH 300</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>INCREMENT BY 1</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>NOCACHE</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>NOCYCLE;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--create trigger</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>COMMIT;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>CREATE OR REPLACE TRIGGER customer_trg</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>BEFORE INSERT ON CUSTOMER</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>FOR EACH ROW</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>BEGIN</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>IF :NEW.customer_id IS NULL THEN</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>SELECT seq_customer.NEXTVAL INTO :NEW.customer_id FROM SYS.DUAL;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>END IF;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>END;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>/</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--drop table admin</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>DROP TABLE ADMIN cascade constraints;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--create table admin</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>CREATE TABLE ADMIN(</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>admin_id INTEGER not null</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>user_id INTEGER</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>);</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--add foreign key constraint user_id in admin table</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ALTER TABLE ADMIN</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ADD CONSTRAINT FK_ADMIN_ID FOREIGN KEY (user_id) REFERENCES Cleck_User(user_id)</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ON DELETE CASCADE;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--add primary key constraint admin_id in admin table</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ALTER TABLE ADMIN</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>ADD CONSTRAINT PK_ADMIN_ID PRIMARY KEY (admin_id);</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--create sequence for primary key</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>DROP SEQUENCE SEQ_ADMIN;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>CREATE SEQUENCE SEQ_ADMIN</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>START WITH 400</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>INCREMENT BY 1</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>NOCACHE</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>NOCYCLE;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>--create trigger</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>COMMIT;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>CREATE OR REPLACE TRIGGER admin_trg</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>BEFORE INSERT ON ADMIN</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>FOR EACH ROW</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>BEGIN</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>IF :NEW.admin_id IS NULL THEN</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>SELECT seq_admin.NEXTVAL INTO :NEW.admin_id FROM SYS.DUAL;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>END IF;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>END;</_drop_table_customer>
+  </row>
+  <row>
+    <_drop_table_customer>/</_drop_table_customer>
+  </row>
+</root>

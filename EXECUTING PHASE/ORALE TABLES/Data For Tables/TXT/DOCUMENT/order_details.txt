@@ -1,0 +1,62 @@
+--drop table order_details
+DROP TABLE ORDER_DETAILS cascade constraints;
+--create table order_details
+CREATE TABLE ORDER_DETAILS(
+    product_id NUMBER,  
+    trader_user_id NUMBER,
+    order_product_id INTEGER,
+    product_qty NUMBER,
+    product_price NUMBER
+);
+
+--add foreign key constraint order_product_id in order_tables table
+ALTER TABLE ORDER_DETAILS 
+ADD CONSTRAINT FK_ORDER_PRODUCT_DETAILS_ID FOREIGN KEY (order_product_id) REFERENCES ORDER_PRODUCT(order_product_id);
+--add foreign key constraint product_id in order_product table
+ALTER TABLE ORDER_DETAILS 
+ADD CONSTRAINT FK_PRODUCT_DETAILS_ID FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)
+ON DELETE CASCADE;
+--add foreign key constraint user_id in order_details table
+ALTER TABLE ORDER_DETAILS
+ADD CONSTRAINT FK_TRADER_USER_ID FOREIGN KEY (trader_user_id) REFERENCES Cleck_User(user_id)
+ON DELETE CASCADE;
+
+--drop table collection_slot
+DROP TABLE COLLECTION_SLOT cascade constraints;
+--create table collection_slot
+CREATE TABLE COLLECTION_SLOT(
+    slot_id INTEGER not null,
+    slot_date DATE,
+    slot_time varchar2(255),
+    slot_day VARCHAR2(10),
+    order_product_id INTEGER
+);
+--add primary key constraint slot_id in collection_slot table
+ALTER TABLE COLLECTION_SLOT
+ADD CONSTRAINT PK_COLLECTION_SLOT PRIMARY KEY (slot_id);
+--add foreign key constraint order_product_id in collection_slot table
+ALTER TABLE COLLECTION_SLOT
+ADD CONSTRAINT FK_ORDER_PRODUCT_ID FOREIGN KEY (order_product_id) REFERENCES ORDER_PRODUCT(order_product_id)
+ON DELETE CASCADE;
+
+--add column in collection_slot
+ALTER TABLE COLLECTION_SLOT
+ADD location VARCHAR2(255);
+
+--create sequence for primary key 
+DROP SEQUENCE SEQ_SLOT;
+CREATE SEQUENCE SEQ_SLOT START WITH 1500
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+--create trigger
+COMMIT;
+CREATE OR REPLACE TRIGGER slot_trg
+BEFORE INSERT ON collection_slot
+FOR EACH ROW
+BEGIN 
+  IF :NEW.slot_id IS NULL THEN 
+  SELECT seq_slot.NEXTVAL INTO :NEW.slot_id FROM SYS.DUAL;
+  END IF;
+END;
+/

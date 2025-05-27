@@ -1,0 +1,34 @@
+--drop table wishlist 
+DROP TABLE WISHLIST cascade constraints;
+--create table wishlist 
+CREATE TABLE WISHLIST(
+    wishlist_id INTEGER not null,
+    wishlist_created_date DATE,
+    wishlist_updated_date DATE,
+    customer_id INTEGER not null
+);
+--add primary key constraint wishlist_id in wishlist table
+ALTER TABLE WISHLIST
+ADD CONSTRAINT PK_WISHLIST_ID PRIMARY KEY (wishlist_id);
+--add foreign key constraint customer_id in wishlist table
+ALTER TABLE WISHLIST 
+ADD CONSTRAINT FK_CUSTOMER_WISHLIST_ID FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id)
+ON DELETE CASCADE;
+
+--create sequence for primary key 
+DROP SEQUENCE SEQ_WISHLIST;
+CREATE SEQUENCE SEQ_WISHLIST START WITH 1000
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+--create trigger
+COMMIT;
+CREATE OR REPLACE TRIGGER wishlist_trg
+BEFORE INSERT ON WISHLIST
+FOR EACH ROW
+BEGIN 
+  IF :NEW.wishlist_id IS NULL THEN 
+  SELECT seq_wishlist.NEXTVAL INTO :NEW.wishlist_id FROM SYS.DUAL;
+  END IF;
+END;
+/

@@ -1,0 +1,38 @@
+--drop table shop
+DROP TABLE SHOP cascade constraints;
+--create table shop 
+CREATE TABLE SHOP(
+    shop_id INTEGER not null,
+    shop_name VARCHAR2(100),
+    shop_description VARCHAR2(500),
+    user_id INTEGER,
+    verified_shop NUMBER(1),
+    shop_profile varchar2(255),
+    shop_category_id NUMBER,
+    registration_no NUMBER
+);
+--add foreign key constraint user_id in shop table 
+ALTER TABLE SHOP
+ADD CONSTRAINT FK_SHOP_USER_ID FOREIGN KEY (user_id) REFERENCES Cleck_User(user_id)
+ON DELETE CASCADE;
+--add primary key constraint shop_id in shop table 
+ALTER TABLE SHOP 
+ADD CONSTRAINT PK_SHOP_ID PRIMARY KEY (shop_id);
+
+--create sequence for primary key 
+DROP SEQUENCE SEQ_SHOP;
+CREATE SEQUENCE SEQ_SHOP START WITH 500
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+--create trigger
+COMMIT;
+CREATE OR REPLACE TRIGGER shop_trg
+BEFORE INSERT ON SHOP
+FOR EACH ROW
+BEGIN 
+  IF :NEW.shop_id IS NULL THEN 
+  SELECT seq_shop.NEXTVAL INTO :NEW.shop_id FROM SYS.DUAL;
+  END IF;
+END;
+/

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <row>
+    <_drop_table_review>DROP TABLE REVIEW cascade constraints;</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>--create table review</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>CREATE TABLE REVIEW(</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>review_id INTEGER not null</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>review_date DATE</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>review_score INTEGER</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>feedback VARCHAR2(500)</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>product_id INTEGER not null</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>user_id INTEGER</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>);</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>--add primary key constraint review_id in review table</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ALTER TABLE REVIEW</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ADD CONSTRAINT PK_REVIEW_ID PRIMARY KEY (review_id);</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>--add foreign key constraint user_id in review table</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ALTER TABLE REVIEW</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ADD CONSTRAINT FK_REVIEW_USER_ID FOREIGN KEY (user_id) REFERENCES Cleck_User(user_id)</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ON DELETE CASCADE;</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>--add foreign key constraint product_id in review table</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ALTER TABLE REVIEW</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ADD CONSTRAINT FK_REVIEW_PRODUCT_ID FOREIGN KEY (product_id) REFERENCES PRODUCT(product_id)</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ON DELETE CASCADE;</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>--add column review_provided in review table</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ALTER TABLE REVIEW</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ADD REVIEW_PROCIDED NUMBER;</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>--add column order_id in review table</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ALTER TABLE REVIEW</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ADD order_id NUMBER NOT NULL;</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>--add column customer_id in review table</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ALTER TABLE REVIEW</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ADD customer_id NUMBER NOT NULL;</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>--add foreign key constraint order_product_id in review table</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ALTER TABLE REVIEW</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ADD CONSTRAINT FK_REVIEW_ORDER_ID FOREIGN KEY (order_id) REFERENCES ORDER_PRODUCT(order_product_id)</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ON DELETE CASCADE;</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>--add foreign key constraint customer_id in review table</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ALTER TABLE REVIEW</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ADD CONSTRAINT FK_REVIEW_CUSTOMER_ID FOREIGN KEY (customer_id) REFERENCES CUSTOMER(customer_id)</_drop_table_review>
+  </row>
+  <row>
+    <_drop_table_review>ON DELETE CASCADE;</_drop_table_review>
+  </row>
+</root>

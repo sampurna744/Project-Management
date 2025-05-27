@@ -1,0 +1,75 @@
+--drop table customer
+DROP TABLE CUSTOMER cascade constraints;
+--create table customer
+CREATE TABLE CUSTOMER(
+    customer_id INTEGER not null,
+    customer_date_joined DATE,
+    verification_code INTEGER,
+    date_updated DATE,
+    verified_customer NUMBER(1),
+    user_id INTEGER,
+    profile_picture VARCHAR2(255)
+);
+--add foreign key constraint user_id in customer table
+ALTER TABLE CUSTOMER
+ADD CONSTRAINT FK_CUSTOMER_ID FOREIGN KEY (user_id) REFERENCES Cleck_User(user_id)
+ON DELETE CASCADE;
+
+--add primary key constraint customer_id in customer table
+ALTER TABLE CUSTOMER
+ADD CONSTRAINT PK_CUSTOMER_ID PRIMARY KEY (customer_id);
+
+--create sequence for primary key 
+DROP SEQUENCE SEQ_CUSTOMER;
+CREATE SEQUENCE SEQ_CUSTOMER 
+START WITH 300  
+INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+--create trigger
+COMMIT;
+CREATE OR REPLACE TRIGGER customer_trg
+BEFORE INSERT ON CUSTOMER
+FOR EACH ROW
+BEGIN 
+  IF :NEW.customer_id IS NULL THEN 
+  SELECT seq_customer.NEXTVAL INTO :NEW.customer_id FROM SYS.DUAL;
+  END IF;
+END;
+/
+
+
+--drop table admin
+DROP TABLE ADMIN cascade constraints;
+--create table admin
+CREATE TABLE ADMIN(
+    admin_id INTEGER not null,
+    user_id INTEGER
+);
+--add foreign key constraint user_id in admin table
+ALTER TABLE ADMIN
+ADD CONSTRAINT FK_ADMIN_ID FOREIGN KEY (user_id) REFERENCES Cleck_User(user_id)
+ON DELETE CASCADE;
+
+--add primary key constraint admin_id in admin table
+ALTER TABLE ADMIN
+ADD CONSTRAINT PK_ADMIN_ID PRIMARY KEY (admin_id);
+
+--create sequence for primary key 
+DROP SEQUENCE SEQ_ADMIN;
+CREATE SEQUENCE SEQ_ADMIN 
+  START WITH 400
+  INCREMENT BY 1
+  NOCACHE
+  NOCYCLE;
+--create trigger
+COMMIT;
+CREATE OR REPLACE TRIGGER admin_trg
+BEFORE INSERT ON ADMIN
+FOR EACH ROW
+BEGIN 
+  IF :NEW.admin_id IS NULL THEN 
+  SELECT seq_admin.NEXTVAL INTO :NEW.admin_id FROM SYS.DUAL;
+  END IF;
+END;
+/
